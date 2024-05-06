@@ -36,7 +36,6 @@ router.post("/", async (req, res) => {
             })
         );
 
-        res.send("Signup");
     } catch (error) {
         res.status(500).json(
             jsonResponse(500, {
