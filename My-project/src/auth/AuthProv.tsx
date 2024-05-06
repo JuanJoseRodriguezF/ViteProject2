@@ -9,14 +9,18 @@ interface AuthProviderProps {
 const AuthContext = createContext({
     isAuthenticated: false,
     getAccessToken: () => {},
-    saveUser: (userData: AuthResponse) => {},
+    saveUser: (userData: AuthResponse) => {
+        console.log("saveUser function called", userData);
+    },
     getRefreshToken: () => {},
 });
+
+
   
 export function AuthProvider({ children }: AuthProviderProps) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [accessToken, setAccessToken] = useState<string>("");
-    const [user, setUser] = useState<User>();
+    const [, setUser] = useState<User>();
     //const [refreshToken, setRefreshToken] = useState<string>("");
 
     useEffect(()=>{}, []);
@@ -88,6 +92,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             }
         }
     };
+    <button onClick={checkOut}>Realizar checkout</button>
 
     function saveSessionInfo(userInfo:User, accessToken:string, refreshToken:string){
         setAccessToken(accessToken);
