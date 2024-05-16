@@ -2,7 +2,7 @@ function getUserInfo(user){
     return{
         username: user.username,
         email: user.email,
-        id: user.id,
+        id: user.id || user._id,
     }
 };
 

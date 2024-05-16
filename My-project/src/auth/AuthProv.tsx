@@ -13,17 +13,20 @@ const AuthContext = createContext({
         console.log("saveUser function called", userData);
     },
     getRefreshToken: () => {},
-});
-
-
+    getUser: () => ({} as User | undefined),
+    signOut: () => {},
+  });
   
 export function AuthProvider({ children }: AuthProviderProps) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [accessToken, setAccessToken] = useState<string>("");
-    const [, setUser] = useState<User>();
+    const [user, setUser] = useState<User>();
+    const [isLoading, setIsLoading] = useState(true);
     //const [refreshToken, setRefreshToken] = useState<string>("");
 
-    useEffect(()=>{}, []);
+    useEffect(()=>{
+        checkOut();
+    }, []);
 
     async function requestNewAccessToken(refreshToken:string){
         try {
@@ -63,7 +66,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 if(json.error){
                     throw new Error(json.error);
                 }
-                return json;
+                return json.body;
             }else{
                 throw new Error(response.statusText);
             }
@@ -76,7 +79,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     async function checkOut() {
         if(accessToken){
             //el usuario esta autenticado
-
+            const userInfo = await getUserInfo(accessToken);
+            if(userInfo){
+                saveSessionInfo(userInfo, accessToken, getRefreshToken()!);
+                setIsLoading(false);
+                return;
+            }
         }else{
             //el usuario no esta autenticado
             const token = getRefreshToken();
@@ -87,12 +95,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     const userInfo = await getUserInfo(newAccessToken);
                     if(userInfo){
                         saveSessionInfo(userInfo, newAccessToken, token);
+                        setIsLoading(false);
+                        return;
                     }
                 }
             }
         }
+        setIsLoading(false);
     };
-    <button onClick={checkOut}>Realizar checkout</button>
+
+    function signOut(){
+        setIsAuthenticated(false);
+        setAccessToken("");
+        setUser(undefined);
+        localStorage.removeItem("token");
+    }
 
     function saveSessionInfo(userInfo:User, accessToken:string, refreshToken:string){
         setAccessToken(accessToken);
@@ -106,10 +123,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     function getRefreshToken():string|null{
-        const token = localStorage.getItem("token");
-        if(token){
-            const {refreshToken} = JSON.parse(token);
-            return refreshToken;
+        const tokenData = localStorage.getItem("token");
+        if(tokenData){
+            const token = JSON.parse(tokenData);
+            return token;
         }
         return null;
     }
@@ -122,9 +139,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
         );
     }
 
+    function getUser(){
+        return user;
+    }
+
     return(
-        <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken}}>
-            {children}
+        <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser, signOut}}>
+            {isLoading ? <div>Loading...</div> : children}
         </AuthContext.Provider>
     );
 }

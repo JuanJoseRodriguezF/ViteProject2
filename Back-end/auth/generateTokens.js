@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 function sign(payload, isAccessToken){
     return jwt.sign(
         payload,
-        isAccessToken? process.env.ACCESS_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
+        isAccessToken
+            ? process.env.ACCESS_TOKEN_SECRET
+            : process.env.REFRESH_TOKEN_SECRET,
         {
             algorithm: "HS256",
             expiresIn: 3600,

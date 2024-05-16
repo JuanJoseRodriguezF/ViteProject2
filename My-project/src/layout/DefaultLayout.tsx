@@ -12,7 +12,7 @@ export default function DefaultLayout({children}: DefaultLayoutProps) {
           <nav>
             <ul>
               <h1>
-                Twitter
+                TweetVerse
               </h1>
               <li>
                 <Link to="/">Login</Link>
