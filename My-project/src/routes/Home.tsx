@@ -76,8 +76,8 @@ export default function Home() {
             <h1>Bienvenid@ {auth.getUser()?.username ?? ""}</h1>
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="What are you thinking about" onChange={(e) => setTitle(e.target.value)} value={title} />
-                <button type="button">Create</button>
                 <button type="button">Edit</button>
+                <button type="button">Remove</button>
             </form>
             {tweets.map((tweet) => (<div key={tweet._id}>{tweet.title}</div>))}
         </NavLayout>
