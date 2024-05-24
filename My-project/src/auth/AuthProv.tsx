@@ -109,6 +109,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setAccessToken("");
         setUser(undefined);
         localStorage.removeItem("token");
+        window.location.href="/";
     }
 
     function saveSessionInfo(userInfo:User, accessToken:string, refreshToken:string){

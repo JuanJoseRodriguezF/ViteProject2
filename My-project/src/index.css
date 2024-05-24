@@ -52,10 +52,31 @@ nav ul li,h1 {
   display: inline-block;
 }
 
+nav h1 {
+  padding: 10px;
+  display: inline-block;
+}
+
 a {
   color: rgb(97, 28, 161);
   text-decoration: none;
 }
+
+.logout {
+  background-color: #eee;
+  color: rgb(97, 28, 161);
+  font-weight: bold;
+  cursor: pointer; /* Cambiamos el cursor */
+  font-size: large;
+}
+
+/* Estilos hover para el botón */
+.logout:hover {
+  background-color: rgb(97, 28, 161);
+  color: #eee;
+}
+
+
 
 .home {
   width: 500px;

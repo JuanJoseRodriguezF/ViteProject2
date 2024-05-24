@@ -20,7 +20,7 @@ export default function Home() {
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        createTweet();
+        createTweet(); // Llama a createTweet solo cuando se envía el formulario
     }
 
     async function createTweet(){
@@ -39,14 +39,14 @@ export default function Home() {
             if(response.ok){
                 const json = await response.json();
                 setTweets([json, ...tweets]);
-            }else{
-                //mostrar error de conexion
+                setTitle(""); // Limpia el input después de crear el tweet
+            } else {
+                // Mostrar error de conexión
             }
-
             const data = await response.json();
             setTweets(data);
         } catch (error) {
-            
+            // Manejar errores de fetch o conexión
         }
     }
 
@@ -61,23 +61,22 @@ export default function Home() {
             if(response.ok){
                 const json = await response.json();
                 setTweets(json);
-            }else{
-                //mostrar error de conexion
+            } else {
+                // Mostrar error de conexión
             }
-
             const data = await response.json();
             setTweets(data);
         } catch (error) {
-            
+            // Manejar errores de fetch o conexión
         }
     }
+
     return (
         <NavLayout>
             <h1>Bienvenid@ {auth.getUser()?.username ?? ""}</h1>
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="What are you thinking about" onChange={(e) => setTitle(e.target.value)} value={title} />
-                <button type="button">Edit</button>
-                <button type="button">Remove</button>
+                <button type="submit">Create</button> {/* Cambia type="button" a type="submit" */}
             </form>
             {tweets.map((tweet) => (<div key={tweet._id}>{tweet.title}</div>))}
         </NavLayout>

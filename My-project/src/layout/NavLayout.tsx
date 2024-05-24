@@ -1,29 +1,10 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthProv";
 import React from "react";
-import { API_URL } from "../auth/constants";
 
 export default function NavLayout({children}: {children:React.ReactNode}){
     const auth = useAuth();
 
-    async function handleSignOut(e: React.MouseEvent<HTMLAnchorElement>){
-        e.preventDefault();
-        try {
-            const response = await fetch(`${API_URL}/signout`, {
-                method: "DELETE",
-                headers: {
-                    "Content-type": "application/json",
-                    "Authorization": `Bearer ${auth.getRefreshToken()}`
-                }
-            });
-
-            if(response.ok){
-                auth.signOut();
-            };
-        } catch (error) {
-            
-        }
-    }
 
     return(
         <>
@@ -40,9 +21,9 @@ export default function NavLayout({children}: {children:React.ReactNode}){
                             <Link to="/profile">{auth.getUser()?.username ?? ""}</Link>
                         </li>
                         <li>
-                            <a href="#" onClick={handleSignOut}>
-                                Sign out
-                            </a>
+                            <button className="logout" onClick={auth.signOut}>
+                                Logout
+                            </button>
                         </li>
                     </ul>
                 </nav>
