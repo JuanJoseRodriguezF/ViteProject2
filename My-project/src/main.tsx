@@ -8,7 +8,7 @@ import Profile from './routes/Profile.tsx'
 import Search from './routes/Search.tsx'
 import {AuthProvider} from './auth/AuthProv.tsx'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/*",
+    element: <Navigate to="/" />,
   },
   {
     path: "/",
@@ -34,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/*",
+        element: <Navigate to="/home" />,
       },
     ],
   },

@@ -20,7 +20,7 @@ label {
 }
 
 input[type="text"],
-[type="password"] {
+[type="password"], [type="email"] {
   display: block;
   padding: 10px;
   box-sizing: border-box;

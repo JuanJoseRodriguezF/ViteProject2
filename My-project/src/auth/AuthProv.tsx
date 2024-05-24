@@ -122,9 +122,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         return accessToken;
     }
 
-    function getRefreshToken():string|null{
+    function getRefreshToken(): string | null {
         const tokenData = localStorage.getItem("token");
-        if(tokenData){
+        if (tokenData) {
             const token = JSON.parse(tokenData);
             return token;
         }
