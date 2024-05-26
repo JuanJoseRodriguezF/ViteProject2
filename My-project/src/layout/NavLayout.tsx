@@ -11,6 +11,10 @@ export default function NavLayout({children}: {children:React.ReactNode}){
             <header>
                 <nav>
                     <ul>
+                    <img src="../src/assets/image/Logo-web.jpg" alt="a" />
+                    <h1 className="Titulo">
+                        TweetVerse
+                    </h1>
                         <li>
                             <Link to="/home">Home</Link>
                         </li>
