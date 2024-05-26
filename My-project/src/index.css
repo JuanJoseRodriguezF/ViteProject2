@@ -46,7 +46,14 @@ button {
   padding: 1em;
   font-size: 1rem;
   transition: all 0.3s ease;
+  cursor: pointer; /* Añadido para cambiar el cursor */
 }
+
+input[type="button"]:hover,
+button:hover {
+  background-color: rgb(24, 100, 172); /* Cambia a un azul más oscuro */
+}
+
 @media (max-width: 320px) {
   input[type="button"],
   button {

@@ -96,7 +96,7 @@ export default function Profile() {
             <h1>Perfil</h1>
             <h2>Nombre: {auth.getUser()?.username ?? ""}</h2>
             <h2>Email: {auth.getUser()?.email ?? ""}</h2>
-            <h2>Tweets:</h2>
+            <h2>Mis Tweets:</h2>
             {tweets.map(tweet => (
                 <div key={tweet._id} style={{ border: "1px solid black", padding: "10px", margin: "10px 0" }}>
                     {editingTweetId === tweet._id ? (
