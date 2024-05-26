@@ -11,7 +11,8 @@ export default function DefaultLayout({children}: DefaultLayoutProps) {
         <header>
           <nav>
             <ul>
-              <h1>
+              <img src="../src/assets/image/Logo-web.jpg" alt="a" />
+              <h1 className="Titulo">
                 TweetVerse
               </h1>
               <li>
