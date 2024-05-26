@@ -53,7 +53,7 @@ export default function Signup() {
     return (
         <DefaultLayout>
             <form className="form" onSubmit={handleSubmit}>
-                <h1>Signup</h1>
+                <h1>Sign Up</h1>
                 {!!errorResponse && <div className="errorMessage">{errorResponse}</div>}
                 <label>Username</label>
                 <input 
@@ -76,7 +76,7 @@ export default function Signup() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <button>Signup</button>
+                <button>Sign Up</button>
             </form>
         </DefaultLayout>
     );

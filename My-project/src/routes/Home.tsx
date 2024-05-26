@@ -78,7 +78,7 @@ export default function Home() {
 
     return (
         <NavLayout>
-            <h1>Bienvenid@ {auth.getUser()?.username ?? ""}</h1>
+            <h1>Welcome {auth.getUser()?.username ?? ""}</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
