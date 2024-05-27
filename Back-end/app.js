@@ -3,6 +3,9 @@ const cors = require('cors');//para comunicacion entre dominios
 const app = express();
 const mongoose = require('mongoose');
 const authenticate = require("./auth/authenticate");
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 require('dotenv').config();
 

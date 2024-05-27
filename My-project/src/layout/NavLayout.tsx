@@ -12,7 +12,7 @@ export default function NavLayout({children}: {children:React.ReactNode}){
             <header className="fixed-top">
                 <nav>
                     <ul>
-                        <img src="../src/assets/image/Logo-web.jpg" alt="a" />
+                        <img src="../public/Logo-web.jpg" alt="a" />
                         <h1 className="Titulo">
                             TweetVerse
                         </h1>
