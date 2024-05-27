@@ -15,7 +15,7 @@ export default function Home() {
     const [tweets, setTweets] = useState<Tweet[]>([]);
     const [title, setTitle] = useState("");
 
-    useEffect(() => { loadTweets() }, []);
+    useEffect(() => { loadTweets(); }, []);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -25,7 +25,7 @@ export default function Home() {
             return;
         }
 
-        createTweet(); // Llama a createTweet solo cuando se envía el formulario y el título no está vacío
+        await createTweet(); // Llama a createTweet solo cuando se envía el formulario y el título no está vacío
     }
 
     async function createTweet() {
@@ -33,12 +33,10 @@ export default function Home() {
             const response = await fetch(`${API_URL}/tweets`, {
                 method: "POST",
                 headers: {
-                    "Content-type": "application/json",
+                    "Content-Type": "application/json",
                     "Authorization": `Bearer ${auth.getAccessToken()}`
                 },
-                body: JSON.stringify({
-                    title,
-                }),
+                body: JSON.stringify({ title }),
             });
 
             if (response.ok) {
@@ -47,11 +45,11 @@ export default function Home() {
                 setTitle(""); // Limpia el input después de crear el tweet
             } else {
                 // Mostrar error de conexión
+                console.error("Error creating tweet:", response.statusText);
             }
-            const data = await response.json();
-            setTweets(data);
         } catch (error) {
             // Manejar errores de fetch o conexión
+            console.error("Error creating tweet:", error);
         }
     }
 
@@ -68,11 +66,11 @@ export default function Home() {
                 setTweets(json);
             } else {
                 // Mostrar error de conexión
+                console.error("Error loading tweets:", response.statusText);
             }
-            const data = await response.json();
-            setTweets(data);
         } catch (error) {
             // Manejar errores de fetch o conexión
+            console.error("Error loading tweets:", error);
         }
     }
 
@@ -86,11 +84,10 @@ export default function Home() {
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                 />
-                <button type="submit"><i className="fa-solid fa-plus"></i></button> {/* Cambia type="button" a type="submit */}
+                <button type="submit"><i className="fa-solid fa-plus"></i></button>
             </form>
             
             <div className="tweetsContainer">
-                
                 {tweets.map((tweet) => (
                     <div className="tweet" key={tweet._id}>
                         <div className="userInfo">
@@ -98,13 +95,9 @@ export default function Home() {
                             <p>{auth.getUser()?.email ?? ""}</p>
                         </div>
                         <h2 className="tweet-title">{tweet.title}</h2>
-                        
                     </div>
                 ))}
             </div>
-
-
         </NavLayout>
-    );
-
+    );
 }
