@@ -41,7 +41,7 @@ export default function Profile() {
 
     return (
         <NavLayout>
-            <h1>Search:</h1>
+            <h1 className="up">Search:</h1>
             <input type="text" value={searchTerm} onChange={handleInputChange} /> {/* Manejar el cambio en el input */}
             <button onClick={handleSearch}>Search</button> {/* Llamar a la función de búsqueda al hacer clic en el botón */}
             {/* Mostrar los tweets filtrados */}

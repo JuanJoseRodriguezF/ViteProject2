@@ -93,7 +93,7 @@ export default function Profile() {
 
     return (
         <NavLayout>
-            <h1>Profile</h1>
+            <h1 className="up">Profile</h1>
             <h2>Name: {auth.getUser()?.username ?? ""}</h2>
             <h2>Email: {auth.getUser()?.email ?? ""}</h2>
             <h2>My Tweets:</h2>
@@ -111,7 +111,6 @@ export default function Profile() {
                         </>
                     ) : (
                         <>
-                            <p>By: {auth.getUser()?.username ?? ""}</p>
                             <p>{tweet.title}</p>
                             <button onClick={() => deleteTweet(tweet._id)}>Eliminar</button>
                             <button onClick={() => startEditing(tweet)}>Editar</button>

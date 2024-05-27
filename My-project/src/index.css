@@ -37,6 +37,7 @@ input[type="button"],
 button {
   background-color: rgb(39, 131, 212);
   margin-top: 5%;
+  margin-bottom: 10%;
   height: 4em;
   border: 0;
   min-width: 100%;
@@ -70,18 +71,24 @@ nav {
 }
 
 nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
   margin: 0;
-  text-align: left;
 }
 
 nav ul li,h1 {
   font-size: 20px;
   padding: 10px;
   display: inline-block;
+  margin-right: 5%;
+  font-weight: bold;
 }
 
+
 a {
-  color: rgb(0, 208, 255);
+  color: rgb(233, 234, 241);
   text-decoration: none;
 }
 
@@ -103,6 +110,7 @@ h1{
 .Titulo{
   color: #ffffff;
   font-size: clamp(1.875rem, 1.1937rem + 2.5352vw, 3rem);
+  margin-right: auto;
 }
 
 .login{
@@ -121,7 +129,68 @@ h1{
 }
 
 img{
-  height: 80px;
-  padding-top: 40px;
+  height: 130px;
+  
   border-radius: 60%;
+  margin-left: 2%;
+}
+
+.logout{
+  margin-left: auto; 
+  background-color: #d9534f;
+  border: none;
+  padding: 0.5em 1em;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.fa-solid{
+  font-size: 30px;
+}
+.fa-user{
+  font-size: 20px;
+  margin-right: 10px;
+  color: #ffffff;
+}
+.fa-house{
+  font-size: 20px;
+  margin-right: 10px;
+  color: #ffffff;
+}
+.fa-magnifying-glass{
+  font-size: 20px;
+  margin-right: 10px;
+  color: #ffffff;
+}
+.fa-plus{
+  font-size: 40px;
+  color: #ffffff;
+}
+
+.tweet {
+  background-color: rgb(181, 181, 181);
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom: 10px;
+}
+
+.tweet-title{
+ background-color: white;
+ border-radius: 40px;
+ padding: 5%;
+}
+
+.fixed-top{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: auto;
+}
+
+.up{
+  padding-top: 35%;
 }

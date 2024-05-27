@@ -78,7 +78,7 @@ export default function Home() {
 
     return (
         <NavLayout>
-            <h1>Welcome {auth.getUser()?.username ?? ""}</h1>
+            <h1 className="up">Bienvenid@ {auth.getUser()?.username ?? ""}</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -86,11 +86,25 @@ export default function Home() {
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                 />
-                <button type="submit">Create</button> {/* Cambia type="button" a type="submit */}
+                <button type="submit"><i className="fa-solid fa-plus"></i></button> {/* Cambia type="button" a type="submit */}
             </form>
-            {tweets.map((tweet) => (
-                <div key={tweet._id}>{tweet.title}</div>
-            ))}
+            
+            <div className="tweetsContainer">
+                
+                {tweets.map((tweet) => (
+                    <div className="tweet" key={tweet._id}>
+                        <div className="userInfo">
+                            <p>{auth.getUser()?.username ?? ""}</p>
+                            <p>{auth.getUser()?.email ?? ""}</p>
+                        </div>
+                        <h2 className="tweet-title">{tweet.title}</h2>
+                        
+                    </div>
+                ))}
+            </div>
+
+
         </NavLayout>
-    );
+    );
+
 }
