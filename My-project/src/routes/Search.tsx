@@ -43,14 +43,24 @@ export default function Profile() {
         <NavLayout>
             <h1 className="up">Search:</h1>
             <input type="text" value={searchTerm} onChange={handleInputChange} /> {/* Manejar el cambio en el input */}
-            <button onClick={handleSearch}>Search</button> {/* Llamar a la función de búsqueda al hacer clic en el botón */}
+            <button onClick={handleSearch}><i className="fa-solid fa-magnifying-glass"></i></button> {/* Llamar a la función de búsqueda al hacer clic en el botón */}
             {/* Mostrar los tweets filtrados */}
-            {filteredTweets.map((tweet) => (
-                <div key={tweet._id}>
-                    <h3>{tweet.title}</h3>
-                    <p>{tweet.content}</p>
-                </div>
-            ))}
+            <div className="tweetsContainer">
+                {filteredTweets.map((tweet) => (
+                    <div className="tweet" key={tweet._id}>
+                        <div className="userInfo">
+                            <i className="fas fa-user userIcon"></i>
+                            <div className="userDetails">
+                                <p className="tweetUser">{auth.getUser()?.username ?? ""}</p>
+                                <p>{auth.getUser()?.email ?? ""}</p>
+                            </div>
+                        </div>
+                        <h2 className="tweet-title">{tweet.title}</h2>
+                        <p className="tweet-content">{tweet.content}</p>
+                    </div>
+                ))}
+            </div>
         </NavLayout>
+
     );
 }

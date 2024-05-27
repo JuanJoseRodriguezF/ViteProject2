@@ -94,30 +94,59 @@ export default function Profile() {
     return (
         <NavLayout>
             <h1 className="up">Profile</h1>
-            <h2>Name: {auth.getUser()?.username ?? ""}</h2>
-            <h2>Email: {auth.getUser()?.email ?? ""}</h2>
-            <h2>My Tweets:</h2>
-            {tweets.map(tweet => (
-                <div key={tweet._id} style={{ border: "1px solid black", padding: "10px", margin: "10px 0" }}>
-                    {editingTweetId === tweet._id ? (
-                        <>
-                            <input
-                                type="text"
-                                value={newTitle}
-                                onChange={(e) => setNewTitle(e.target.value)}
-                            />
-                            <button onClick={() => updateTweet(tweet._id)}>Actualizar</button>
-                            <button onClick={cancelEditing}>Cancelar</button>
-                        </>
-                    ) : (
-                        <>
-                            <p>{tweet.title}</p>
-                            <button onClick={() => deleteTweet(tweet._id)}>Eliminar</button>
-                            <button onClick={() => startEditing(tweet)}>Editar</button>
-                        </>
-                    )}
+            <div className="additionalText">
+                <div className="userInfo">
+                    <i className="fas fa-user userIcon"></i>
+                    <div className="userDetails">
+                        <p>{auth.getUser()?.username ?? ""}</p>
+                        <p>{auth.getUser()?.email ?? ""}</p>
+                    </div>
                 </div>
-            ))}
+                <div className="white">
+                    <p>Change Password</p>
+                    <p>Options</p>
+                    <p>Help</p>
+                    <p>Terms and Conditions</p>
+                    <p>About Us</p>
+                </div>
+            </div>
+            <h2>My Tweets:</h2>
+            <div className="tweetsContainer">
+                {tweets.map(tweet => (
+                    <div className="tweet" key={tweet._id}>
+                        {editingTweetId === tweet._id ? (
+                            <>
+                                <input
+                                    type="text"
+                                    value={newTitle}
+                                    onChange={(e) => setNewTitle(e.target.value)}
+                                    className="tweet-edit-input"
+                                />
+                                <div className="button-container">
+                                    <button className="tweet-button" onClick={() => updateTweet(tweet._id)}>Actualizar</button>
+                                    <button className="tweet-button" onClick={cancelEditing}>Cancelar</button>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="userInfo">
+                                    <i className="fas fa-user userIcon"></i>
+                                    <div className="userDetails">
+                                        <p>{auth.getUser()?.username ?? ""}</p>
+                                        <p>{auth.getUser()?.email ?? ""}</p>
+                                    </div>
+                                </div>
+                                <h2 className="tweet-title">{tweet.title}</h2>
+                                
+                                <div className="button-container">
+                                    <button className="tweet-button" onClick={() => deleteTweet(tweet._id)}><i className="fa-solid fa-trash"></i></button>
+                                    <button className="tweet-button" onClick={() => startEditing(tweet)}><i className="fa-solid fa-pen-to-square"></i></button>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                ))}
+            </div>
         </NavLayout>
     );
 }

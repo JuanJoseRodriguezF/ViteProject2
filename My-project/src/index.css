@@ -83,7 +83,6 @@ nav ul li,h1 {
   padding: 10px;
   display: inline-block;
   margin-right: 5%;
-  font-weight: bold;
 }
 
 
@@ -174,6 +173,7 @@ img{
   border-radius: 30px;
   padding-left: 5%;
   padding-right: 5%;
+  padding-top: 2%;
   margin-bottom: 10px;
 }
 
@@ -193,4 +193,90 @@ img{
 
 .up{
   padding-top: 35%;
+}
+
+.tweetsContainer {
+  padding-bottom: 10%;
+}
+
+.white {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: gray;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.userIcon {
+  font-size: 50px; 
+  margin-right: 10px;
+  color:black;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.userDetails p {
+  margin: 0;
+}
+
+.tweetUser{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px; 
+  margin-top: 5px; 
+}
+
+.tweet-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px; 
+  cursor: pointer;
+  font-size: 12px; 
+  width: center;
+  min-width: 80px; 
+}
+
+.tweet-button:hover {
+  background-color: #b31e00;
+}
+
+.tweet-edit-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+
+
+.additionalText {
+  margin-top: 20px; 
+  background-color: rgb(181, 181, 181);
+  padding: 5%;
+  border-radius: 30px;
+}
+
+.additionalText p {
+  margin: 5px 0; 
+  font-size: 20px;
+  color: #ffffff;
 }

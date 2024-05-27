@@ -76,7 +76,7 @@ export default function Home() {
 
     return (
         <NavLayout>
-            <h1 className="up">Bienvenid@ {auth.getUser()?.username ?? ""}</h1>
+            <h1 className="up">Welcome {auth.getUser()?.username ?? ""}</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -91,8 +91,11 @@ export default function Home() {
                 {tweets.map((tweet) => (
                     <div className="tweet" key={tweet._id}>
                         <div className="userInfo">
-                            <p>{auth.getUser()?.username ?? ""}</p>
-                            <p>{auth.getUser()?.email ?? ""}</p>
+                            <i className="fas fa-user userIcon"></i>
+                            <div className="userDetails">
+                                <p className="tweetUser">{auth.getUser()?.username ?? ""}</p>
+                                <p className="tweetMail">{auth.getUser()?.email ?? ""}</p>
+                            </div>
                         </div>
                         <h2 className="tweet-title">{tweet.title}</h2>
                     </div>
