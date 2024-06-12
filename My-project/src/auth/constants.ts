@@ -1,1 +1,1 @@
-export const API_URL = "https://backend-zeta-dun.vercel.app/api";
+export const API_URL = "http://localhost:3020/api";
